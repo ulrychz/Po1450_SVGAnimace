@@ -1,0 +1,33 @@
+﻿@page "/svg"
+
+<PageTitle>Animace SVG</PageTitle>
+<div class="my-2">
+    <button class="btn btn-primary" @onclick="PridatObrazec">Přidat obrazec</button>
+    <button class="btn btn-warning">Odebrat poslední obrazec</button>
+</div>
+
+<svg width="@SvgWidth" height="@SvgHeight" xmlns="http://www.w3.org/2000/svg" style="border: black solid">
+    @foreach (var item in SvgObrazceList)
+    {
+        switch (item)
+        {
+            case Models.Obdelnik obdelnik:
+                <rect width="@obdelnik.StranaA" height="@obdelnik.StranaB" x="@obdelnik.PozX" y="@obdelnik.PozY"
+                      style="fill:rgb(@obdelnik.Barva.R, @obdelnik.Barva.G, @obdelnik.Barva.B);stroke:black;stroke-width:2" />
+                break;
+            case Models.Ctverec ctverec:
+                <rect width="@ctverec.StranaA" height="@ctverec.StranaA" x="@ctverec.PozX" y="@ctverec.PozY"
+                      style="fill:rgb(@ctverec.Barva.R, @ctverec.Barva.G, @ctverec.Barva.B);stroke:black;stroke-width:2" />
+                break;
+            case Models.Kruh kruh:
+                <circle r="@kruh.Polomer" cx="@kruh.PozX" cy="@kruh.PozY" 
+                fill="rgb(@kruh.Barva.R, @kruh.Barva.G, @kruh.Barva.B)" stroke="black" stroke-width="2" />
+                break;
+        }
+    }
+   
+</svg>
+
+@code {
+
+}
